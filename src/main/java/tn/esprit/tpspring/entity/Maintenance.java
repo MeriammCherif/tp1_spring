@@ -1,5 +1,6 @@
 package tn.esprit.tpspring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,4 +21,10 @@ public class Maintenance {
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private String description;
+
+    // Plusieurs Maintenances appartiennent a un Vehicule (*,1)
+    @ManyToOne
+    @JoinColumn(name = "id_vehicule")
+    @JsonIgnore
+    private Vehicule vehicule;
 }
